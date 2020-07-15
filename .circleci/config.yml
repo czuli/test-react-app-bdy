@@ -2,17 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:12
+      - image: node:11.10.1
 
     working_directory: ~/buddy/test-react-app-bdy
 
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "1b:fb:e8:69:32:2c:94:24:ec:83:70:e5:e8:98:0e:73"
-      - run:
-          name: Deploy Over SSH
-          command: ssh $SSH_USER@$SSH_HOST "cd react-bdy.ermine.pl/"
+      - checkout
 
       # Download and cache dependencies
       - restore_cache:
@@ -21,9 +16,16 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm test
+      - run: yarn test
 
-      - run: npm build
+      - run: yarn build
+
+      - run: yarn netlify:deploy
