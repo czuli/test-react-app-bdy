@@ -12,7 +12,7 @@ jobs:
             - "1b:fb:e8:69:32:2c:94:24:ec:83:70:e5:e8:98:0e:73"
       - run:
           name: Deploy Over SSH
-          command: ssh $SSH_USER@$SSH_HOST "cd react.ermine.pl/"
+          command: ssh $SSH_USER@$SSH_HOST "cd react-bdy.ermine.pl/"
 
       # Download and cache dependencies
       - restore_cache:
