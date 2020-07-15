@@ -2,9 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:11.10.1
+      - image: node:12
 
-    working_directory: ~/buddy/test-react-app-bdy
+    working_directory: ~//buddy/test-react-app-bdy
 
     steps:
       - checkout
@@ -24,8 +24,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm run test
+      - run: yarn test
 
-      - run: npm run build
+      - run: yarn build
 
-      - run: npm run netlify:deploy
+      - run: yarn netlify:deploy
+
+      
