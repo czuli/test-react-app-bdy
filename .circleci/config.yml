@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: node:12
 
-    working_directory: ~//buddy/test-react-app-bdy
+    working_directory: ~/buddy/test-react-app-bdy
 
     steps:
       - checkout
@@ -24,7 +24,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm run test
+      - run: npm run test --watchAll
 
       - run: npm run build
 
