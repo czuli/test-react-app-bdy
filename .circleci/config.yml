@@ -4,10 +4,13 @@ jobs:
     docker:
       - image: node:12
 
-    working_directory: ~//buddy/test-react-app-bdy
+    working_directory: ~/buddy/test-react-app-bdy
 
     steps:
-      - checkout
+      - run:
+          name: Deploy Over SSH
+          command: |
+          ssh ermineadmin@ssh.dhosting.pl
 
       # Download and cache dependencies
       - restore_cache:
