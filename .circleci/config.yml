@@ -7,6 +7,9 @@ jobs:
     working_directory: ~/buddy/test-react-app-bdy
 
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "6d:b6:73:17:67:24:6a:a4:49:3a:de:ac:36:9a:5c:16"
       - run:
           name: Deploy Over SSH
           command: ssh $SSH_USER@$SSH_HOST
